@@ -1,0 +1,14 @@
+we know that *ptr store the address of secret
+use gdb or objdump to find the address of secret, which is 0x804a030
+test with a sequence of %x's to find the position of *ptr in the stack
+put %n at the position corresponding to *ptr to write a value to the address stored in *ptr
+correctly format the string so that the number of bytes before %n is exactly 1337
+(it is a good idea to use gdb for trials and errors,
+useful commands in gdb:
+disas main
+break *main+38
+r $(printf "AAAAA")%x%x%x%x%x%x%n
+x/10x 0x0804a030
+)
+after correctly set the value of secret, the permission for flag.txt is set so that we can cat the file.
+The solution is: who_thought_%n_was_a_good_idea?
